@@ -1,0 +1,1603 @@
+body{
+    margin:0;
+}
+
+/*Black Background*/
+#start-screen {
+    /* BLACK + DIAGONAL STRIPES */
+    background: repeating-linear-gradient(
+        -45deg,          /* direction: down-left */
+        #000000,         /* dark stripe */
+        #000000 10px,
+        #111111 10px,    /* slightly lighter stripe */
+        #111111 20px
+    );    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+/*White card*/
+.start-card {
+    width: min(500px, 85vw);
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 2;
+
+    /* BASE COLOR */
+    background-color: #22404d;
+
+    /* DIAMOND PATTERN */
+    background: radial-gradient(circle,#285f74 0%, #22404d 80%);
+
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.start-card h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(36px, 6vw, 55px);
+    margin-bottom: 30px;
+}
+
+.start-card p {
+    font-family: 'Roboto Condensed', sans-serif;
+    color:#fff;
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.start-card button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    background: #00c0ca;
+    color: white;
+    border: none;
+    font-size: clamp(20px, 4vw, 30px);
+    padding: 15px 35px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+
+.start-card button:hover {
+    background: #00a0af;
+}
+
+.cloud {
+    position: absolute;
+    background:#285f74;
+    border-radius: 50%;
+    z-index: 1;
+}
+/* TOP LEFT CLOUD */
+.cloud-top-left {
+    width: 220px;
+    height: 120px;
+    top: 210px;
+    left: 30px;
+
+    /* creates "puffy" cloud bumps */
+    box-shadow:
+        60px 0 #285f74,
+        120px 20px #285f74,
+        30px 40px #285f74;
+}
+
+/* BOTTOM RIGHT CLOUD */
+.cloud-bottom-right {
+    width: 220px;
+    height: 120px;
+    bottom: 240px;
+    right: 100px;
+
+    box-shadow:
+        60px 0 #285f74,
+        120px 20px #285f74,
+        30px 40px #285f74;
+}
+.flag-carousel {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* moving strip */
+.flag-track {
+    display: flex;
+    width: max-content;
+    animation: scrollFlags 10s linear infinite;
+}
+
+.flag-set {
+    display: flex;
+}
+
+/* flag styling */
+.flag-set img {
+    width: 90px;
+    height: auto;
+    margin: 0 25px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+}
+
+/* animation */
+@keyframes scrollFlags {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* --- MAP SCREEN STYLES --- */
+
+#map-screen {
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        -45deg,
+        #000000,
+        #000000 10px,
+        #111111 10px,
+        #111111 20px
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.map-card {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 3;
+
+    /* remove the white box */
+    background: none;
+    padding: 0;
+    width: 100%;
+}
+
+.map-card h1 {
+    color: #00889c;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.map-card p {
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.map-container {
+    position: relative;
+    width: min(1200px, 92vw);
+    transform: none;
+    margin-top: 100px;
+}
+
+.map {
+    width: 100%;
+    height: auto;
+}
+
+/* plane */
+.plane {
+    position: absolute;
+    width: 120px;
+    left: 5%;
+    top: 5%;
+    transition: transform 1.5s ease-in-out;
+    z-index: 5;
+}
+.fly-to-mexico {
+    transform: translate(25vw, 30vh) rotate(20deg);
+}
+
+/* markers */
+.marker {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+/* create the X using two lines */
+.marker::before,
+.marker::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background: red;
+    top: 50%;
+    left: 0;
+    transform-origin: center;
+}
+
+/* first line */
+.marker::before {
+    transform: rotate(45deg);
+}
+
+/* second line */
+.marker::after {
+    transform: rotate(-45deg);
+}
+
+/* positions (adjust these visually) */
+.marker-start {
+    position: absolute;
+    width: 6vw;
+    max-width: 80px;
+
+    left: 12.5%;
+    top: 37%;
+
+    animation: heartbeat 1.5s infinite;
+    cursor: pointer;
+}
+
+@keyframes heartbeat {
+      0% { transform: scale(1); }
+  15% { transform: scale(1.15); } /* First rapid pulse */
+  30% { transform: scale(1); }
+  45% { transform: scale(1.25); } /* Second larger pulse */
+  70% { transform: scale(1); }
+  100% { transform: scale(1); } /* Pause between beats */
+}
+
+.marker-1 {
+    left: 47.5%;
+    top: 31%;
+}
+
+.marker-2 {
+    left: 47.5%;
+    top: 54%;
+}
+
+.marker-3 {
+    left: 75%;
+    top: 40%;
+}
+
+.routes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.routes path {
+    fill: none;
+    stroke: #00889c; /* blue like your screenshot */
+    stroke-width: 4;
+
+    /* dotted effect */
+    stroke-dasharray: 8 10;
+
+    /* rounded dots */
+    stroke-linecap: round;
+}
+
+/* Importing a rounded, chunky font to match the image */
+
+/* --- PRICE TAG HUD --- */
+.price-tag {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  z-index: 10; /* Keeps it floating above the map */
+  
+  display: inline-flex;
+  align-items: stretch; 
+  
+  /* Colors & Scaled-down Borders */
+  background-color: #ffc52d; 
+  border: 6px solid #22404d;
+  border-radius: 60px; 
+  
+  /* Scaled-down 3D shadow */
+  box-shadow: 8px 8px 0px #22404d;
+  
+  font-family: 'Montserrat', sans-serif;
+  color: #00763d; 
+}
+
+.currency {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Scaled-down Font and Spacing */
+  font-size: 45px;
+  padding: 5px 20px 5px 25px;
+  
+  border-right: 6px solid #22404d;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Scaled-down Font and Spacing */
+  font-size: 55px;
+  padding: 5px 30px 5px 20px;
+  letter-spacing: 1px;
+    color: #00763d;
+}
+
+/* --- IPAD FIX: SHRINK THE PRICE TAG SO IT DOESN'T COVER TEXT --- */
+@media screen and (max-width: 1024px) {
+    .price-tag, .price-tag-africa {
+        top: 15px;
+        right: 15px;
+        transform: scale(0.65); /* Shrinks the box so it fits! */
+        transform-origin: top right;
+    }
+}
+/**************** Mexico *************************/
+
+#plane-ticket-screen {
+    /* BLACK + DIAGONAL STRIPES */
+    background: repeating-linear-gradient(
+        -45deg,          /* direction: down-left */
+        #000000,         /* dark stripe */
+        #000000 10px,
+        #111111 10px,    /* slightly lighter stripe */
+        #111111 20px
+    );    
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+
+
+}
+
+.plane-ticket-card {
+    width: min(900px, 92vw);
+    padding: 50px 30px;
+    position: relative;    
+    min-height: 700px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 2;
+    /* BASE COLOR */
+    background-color: #22404d;
+
+    /* DIAMOND PATTERN */
+    background: radial-gradient(circle, #285F74 0%, #22404D 80%);
+
+
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.plane-ticket-card h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+}
+
+.ticket-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates exactly two columns */
+    gap: 20px;
+    justify-items: center;
+    margin-top: 300px; /* Pushed down to make room for the lowered image */
+    width: 100%;
+}
+
+/* --- FIX: MAKE ALL CITY IMAGES CENTERED AND RESPONSIVE --- */
+.mexico-city,
+.paris-city,
+.africa-city,
+.japan-city {
+    position: absolute;
+    top: 190px; 
+    left: 50%;
+    transform: translateX(-50%); /* Centers the image perfectly */
+
+    width: min(250px, 40vw); /* Scales down on iPads */
+    height: auto;
+
+    border: 4px solid #22404d;
+    border-radius: 30px;
+    box-shadow: 5px 5px 0px #22404d;
+
+    z-index: 1;
+} 
+.economy-class,
+.business-class,
+.first-class {
+    width: min(320px, 42vw); /* Scales down perfectly on iPad */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* This is the magic trick! It forces the First Class ticket 
+   to span across both columns so it drops to the middle! */
+.first-class {
+    grid-column: span 2;
+}
+
+/**************** Mexico Games *************************/
+
+#food-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);    padding-top: 40px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#food-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    margin-bottom: 10px; 
+}
+
+#food-game-screen p {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Added a small style for your new recipe text to match your font themes */
+#recipe-display {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+}
+
+#build-area {
+    width: 400px;
+    height: 250px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 20px;
+    border: 5px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ingredients {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.ingredients img {
+    width: 120px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.ingredients img:hover {
+    transform: scale(1.1);
+}
+
+#mexico-activity-screen {
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        -45deg,
+        #000000,
+        #000000 10px,
+        #111111 10px,
+        #111111 20px
+    );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.activity-header {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.activity-header h1 {
+    color: #00889c;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+}
+
+.activity-header p {
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 24px;
+}
+/* ========================================================
+   ACTIVITY SCREENS (MEXICO, PARIS, AFRICA, JAPAN)
+======================================================== */
+
+/* 1. The Container (Uses Flexbox to evenly space the buttons) */
+.mexico-scene, .paris-scene, .africa-scene, .japan-scene {
+    position: relative;
+    width: min(1200px, 95vw);
+    height: min(700px, 55vh); /* 55vh leaves room for the header and iPad UI */
+    margin-top: 20px;
+    
+    /* Flexbox Magic: Puts buttons at the bottom and spaces them evenly! */
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center; 
+    padding-bottom: 0px; 
+}
+
+/* 2. The Background Image (Locked safely behind the buttons) */
+.mexico-background, .paris-background, .africa-background, .japan-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 5px solid white;
+    
+    /* CHANGE THIS FROM -1 TO 0 */
+    z-index: 0; 
+}
+
+/* 3. The Activity Options (Scales dynamically based on screen width) */
+.activity-option {
+    position: relative; /* Replaces the old absolute positioning */
+    text-align: center;
+    width: min(320px, 28vw); /* Takes up max 28% of screen so they NEVER overlap */
+    z-index: 2;
+}
+
+.activity-icon {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.activity-icon:hover {
+    transform: scale(1.1);
+}
+
+/* 4. The Select Buttons (Scales the text so it doesn't break out of the box) */
+.activity-option button {
+    margin-top: 10px;
+    /* clamp() smoothly scales the padding and font size between mobile and desktop */
+    padding: clamp(8px, 1.5vw, 12px) clamp(10px, 2vw, 20px);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(14px, 2vw, 18px);
+    width: 90%; 
+    border: none;
+    border-radius: 30px;
+    background: #22404d;
+    color: white;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px black;
+}
+
+.activity-option button:hover {
+    transform: scale(1.05);
+}
+
+
+#pyramid-game-screen {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);    padding-top: 40px;
+}
+
+#pyramid-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+}
+
+#pyramid-game-screen p {
+    color: white;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#maze {
+    margin: 40px auto;
+    width: fit-content;
+}
+
+.maze-row {
+    display: flex;
+}
+
+.tile {
+    width: 120px;
+    height: 120px;
+    margin: 5px;
+    border-radius: 15px;
+    border: 4px solid #22404d;
+}
+
+.wall {
+    background: #275f74;
+}
+
+.player {
+    background: #90be6d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.treasure {
+    background: gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.safe {
+    background: #f4d35e;
+    cursor: pointer;
+}
+
+.hidden-path {
+    background: #6c584c !important; /* same as wall */
+    cursor: pointer;
+}
+
+#yacht-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);    padding-top: 40px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#yacht-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+#yacht-game-screen p {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#ocean-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 120px); /* 4 columns */
+    gap: 15px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.ocean-tile {
+    width: 120px;
+    height: 120px;
+    background: #00c0ca; /* Deep ocean blue */
+    border: 4px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px; /* Size of the emojis */
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.ocean-tile:hover:not(.revealed) {
+    transform: scale(1.05);
+    background: #8fc440;
+}
+
+.ocean-tile.revealed {
+    cursor: default;
+    transform: none;
+}
+
+/**************** Paris *************************/
+
+
+
+#paris-activity-screen {
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        -45deg,
+        #000000,
+        #000000 10px,
+        #111111 10px,
+        #111111 20px
+    );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* --- EIFFEL TOWER SNAP --- */
+
+
+#eiffel-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);    padding-top: 40px;
+
+    text-align: center;
+    padding-top: 40px;
+}
+
+#eiffel-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px; 
+}
+
+#eiffel-game-screen p {
+    color: white;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+#camera-view {
+    width: 600px;
+    height: 400px;
+    margin: 30px auto;
+    background: #00c0ca; /* Sky blue */
+    border: 8px solid #333;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.popup-target {
+    position: absolute;
+    font-size: 60px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.1s;
+}
+.popup-target:active { transform: scale(0.9); }
+
+/* --- LOUVRE ART MATCH --- */
+#louvre-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);    padding-top: 40px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#louvre-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px; 
+}
+
+#louvre-game-screen p {
+    color: white;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+/* --- LOUVRE ART MATCH (RESPONSIVE FIX) --- */
+#art-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 fluid, equal columns */
+    gap: 20px; /* Brings the cards closer together so they fit */
+    justify-content: center;
+    margin: 30px auto;
+    width: min(800px, 90vw); /* Max width 800px, but shrinks to 90% of an iPad screen */
+}
+
+.art-card {
+    width: 100%; /* Automatically fills the grid column */
+    aspect-ratio: 1 / 1; /* CSS Magic: Forces the card to always be a perfect square! */
+    height: auto; /* Removes the old rigid 200px height */
+    
+    background: #00c0ca;
+    border: 4px solid #111;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Shrinks the emojis smoothly on smaller screens */
+    font-size: clamp(30px, 5vw, 60px); 
+    
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 4px 4px 0px #111;
+}
+
+.art-card:hover { 
+    transform: scale(1.05); 
+}
+
+/* Hide the emoji by default */
+.hidden-symbol {
+    opacity: 0; 
+    transition: opacity 0.2s ease;
+}
+
+/* When the card is flipped, show the background and emoji */
+.art-card.flipped {
+    background: white;
+    cursor: default;
+    transform: none; /* Stops the hover effect when flipped */
+}
+
+.art-card.flipped .hidden-symbol {
+    opacity: 1;
+}
+
+/* --- MICHELIN VIP SERVE (RESPONSIVE FIX) --- */
+#timing-game {
+    width: min(800px, 90vw); /* Scales down perfectly on iPads */
+    height: clamp(120px, 15vw, 170px);
+    background: #444;
+    border: 5px solid #111;
+    border-radius: 40px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#target-zone {
+    width: 25%; /* Uses percentage instead of pixels */
+    height: 100%;
+    background: #00763d; /* Green target */
+    position: absolute;
+    left: 25%; /* Placed exactly 25% from the left edge */
+}
+
+#moving-plate {
+    position: absolute;
+    font-size: clamp(80px, 12vw, 130px); /* Emoji scales down slightly on smaller screens */
+    top: 50%;
+    transform: translateY(-50%); /* Perfectly centers the emoji vertically */
+    left: 0%; /* Starts at exactly 0% */
+}
+
+#serve-btn {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 30px;
+    padding: 15px 40px;
+    background: #00c0ca;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #111;
+}
+#serve-btn:hover { transform: scale(1.05); }
+
+
+#louvre-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);    padding-top: 40px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#michelin-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px; 
+}
+
+#michelin-game-screen p {
+    color: white;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+#michelin-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);
+    padding-top: 40px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+
+#africa-activity-screen {
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        -45deg,
+        #000000,
+        #000000 10px,
+        #111111 10px,
+        #111111 20px
+    );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+
+
+/* --- PENGUIN PHOTOGRAPHER --- */
+#penguin-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);
+    padding-top: 40px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#penguin-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+#penguin-game-screen p {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+#viewfinder {
+    width: 400px;
+    height: 300px;
+    margin: 0 auto 30px auto;
+    background: #22404d; /* Bright beach sky */
+    border: 10px solid #222;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+}
+
+/* Creating the camera viewfinder crosshairs */
+.camera-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.7);
+}
+.top-left { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+.top-right { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+.bottom-right { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+#penguin-subject {
+    font-size: 150px;
+    /* Blur is controlled by JavaScript! */
+}
+
+#camera-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#focus-slider {
+    width: 400px;
+    height: 10px;
+    background: #00c0ca;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+#snap-btn {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 28px;
+    padding: 15px 40px;
+    background: #00889c; /* Yellow button */
+    color: #fff;
+    border: 4px solid #111;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #111;
+    transition: transform 0.1s;
+}
+#snap-btn:active { transform: translateY(4px); box-shadow: 0px 0px 0px #111; }
+
+
+/* --- VISUAL CABLE CAR STABILIZER --- */
+
+
+#cablecar-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #114b79, #208cb1, #64c2d3);
+    text-align: center;
+    padding-top: 40px;
+}
+
+#cablecar-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    text-shadow: 4px 4px 0px #22404d;
+    margin-bottom: 10px;
+}
+
+#cablecar-game-screen p {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+#cable-car-container {
+    width: 300px;
+    height: 250px;
+    margin: 30px auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* The wire the car hangs from */
+#cable-line {
+    width: 100%;
+    height: 8px;
+    background: #2a3a42;
+    position: absolute;
+    top: 20px;
+    border-radius: 4px;
+}
+
+#cable-car {
+    font-size: 100px;
+    margin-top: 10px; /* Hangs just below the line */
+    transition: transform 0.3s ease-in-out;
+    transform-origin: top center; /* Makes it swing from the top! */
+    text-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+#wind-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#wind-controls button {
+    font-size: 40px;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border: 4px solid #22404d;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #114b79;
+    transition: transform 0.1s;
+}
+#wind-controls button:active { 
+    transform: translateY(4px); 
+    box-shadow: 0px 0px 0px #114b79; 
+}
+/* --- BIG 5 SAFARI TRACKER --- */
+#safari-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);
+    text-align: center;
+    padding-top: 40px;
+}
+
+#safari-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+#safari-game-screen p {
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#tracker-radar {
+    color: #f4d35e;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    background: #111;
+    padding: 10px 30px;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 3px solid #333;
+}
+
+/* Update your existing savanna-grass class to hide the cursor */
+#savanna-grass {
+    width: 500px;
+    height: 300px;
+    background: #8fc440; 
+    border: 8px solid #00763d;
+    border-radius: 15px;
+    margin: 20px auto;
+    position: relative;
+    box-shadow: inset 0px 0px 30px rgba(0,0,0,0.3);
+    overflow: hidden; /* Keeps the scanner inside the box */
+    
+    cursor: none; /* HIDES THE NORMAL MOUSE! */
+}
+
+/* Add this new style for the scanner */
+#scanner-glass {
+    position: absolute;
+    font-size: 50px;
+    pointer-events: none; /* Lets clicks pass right through the emoji */
+    transform: translate(-50%, -50%); /* Centers the glass exactly on the mouse coordinates */
+    display: none; /* Hidden until the mouse enters the box */
+    z-index: 10;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.found-animal {
+    position: absolute;
+    font-size: 60px;
+    transform: translate(-50%, -50%); /* Centers the emoji perfectly on the mouse click */
+    animation: popUp 0.5s ease-out;
+}
+
+@keyframes popUp {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    50% { transform: translate(-50%, -50%) scale(1.5); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+#japan-activity-screen {
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        -45deg,
+        #000000,
+        #000000 10px,
+        #111111 10px,
+        #111111 20px
+    );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+#claw-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);
+    text-align: center;
+    padding-top: 40px;
+}
+
+#claw-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+#claw-game-screen p {
+    color: white;
+    font-family: 'Montserrat', sans-serif;  
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* --- SHIBUYA CLAW MACHINE --- */
+#claw-machine {
+    width: 600px;
+    height: 400px;
+    background: #ffb7b2; /* Kawaii pink */
+    border: 8px solid #333;
+    border-radius: 20px;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.2);
+}
+
+#the-claw {
+    font-size: 50px;
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    transition: top 0.5s ease-in; /* Makes the drop smooth */
+    
+    /* --- NEW IPAD GRAPHICS FIXES --- */
+    transform: translateZ(0); /* Forces the iPad Graphics Card to draw it smoothly */
+    -webkit-transform: translateZ(0); /* Safari specific fix */
+    will-change: left, top; /* Tells the browser to prepare for fast movement */
+    
+    user-select: none; /* Stops the browser from drawing blue highlight lines */
+    -webkit-user-select: none; 
+}
+
+#the-prize {
+    font-size: 60px;
+    position: absolute;
+    bottom: 10px;
+    left: 265px; /* Centered in the 400px box */
+}
+
+#drop-btn, #pour-btn, #push-btn {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 28px;
+    padding: 15px 40px;
+    background: #00763d;
+    color: white;
+    border: 4px solid #111;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #111;
+}
+#drop-btn:active, #pour-btn:active, #push-btn:active { transform: translateY(4px); box-shadow: 0px 0px 0px #111; }
+
+/* --- ZEN TEA CEREMONY --- */
+#thermometer {
+    width: 60px;
+    height: 300px;
+    background: linear-gradient(to top, #87ceeb, #f4d35e, #e74c3c); /* Cold to Hot */
+    border: 6px solid #333;
+    border-radius: 30px;
+    margin: 20px auto;
+    position: relative;
+    box-shadow: inset 0px 0px 15px rgba(0,0,0,0.5);
+}
+
+#zen-zone {
+    position: absolute;
+    bottom: 40%; /* Starts 40% from the bottom */
+    height: 20%; /* Takes up 20% of the thermometer */
+    width: 100%;
+    background: rgba(144, 190, 109, 0.8); /* Green */
+    border-top: 4px solid #111;
+    border-bottom: 4px solid #111;
+}
+
+#temp-indicator {
+    width: 90px;
+    height: 12px;
+    background: #111;
+    border-radius: 5px;
+    position: absolute;
+    left: -15px; /* Sticks out the sides of the thermometer */
+    bottom: 50%; /* Starts exactly in the middle */
+    transition: bottom 0.1s linear;
+}
+
+#zen-progress-container {
+    width: 400px;
+    height: 25px;
+    background: #222;
+    border: 4px solid #111;
+    border-radius: 15px;
+    margin: 10px auto 20px auto;
+    overflow: hidden;
+}
+
+#zen-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #00763d; /* Progress fills up green */
+    transition: width 0.1s linear;
+}
+
+#start-tea-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    padding: 15px 40px;
+    background: #00763d;
+    color: #fff;
+    border: 4px solid #111;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #111;
+}
+
+#cool-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    padding: 15px 40px;
+    background: #00c0ca;
+    color: #111;
+    border: 4px solid #111;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #111;
+    display: none; /* Hidden until the game starts */
+}
+#start-tea-btn:active, #cool-btn:active { transform: translateY(4px); box-shadow: 0px 0px 0px #111; }
+
+/* --- VIP SUMO SHOWDOWN (RESPONSIVE FIX) --- */
+#sumo-ring {
+    width: min(800px, 90vw); /* Scales down perfectly on iPads */
+    height: clamp(150px, 20vw, 300px); /* Shrinks the height smoothly */
+    background: #d4a373; /* Sand color */
+    border: 6px solid #8b5a2b;
+    border-radius: 50px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden; /* Keeps the wrestler inside the ring if he gets pushed to the edge */
+}
+
+#sumo-wrestler {
+    font-size: clamp(80px, 15vw, 150px); /* Emoji scales down slightly on smaller screens */
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Starts perfectly in the middle */
+    transform: translate(-50%, -50%); /* Centers the emoji perfectly both vertically and horizontally */
+    transition: left 0.1s;
+}
+
+
+/* --- ZEN TEA CEREMONY SCREEN BACKGROUND --- */
+#tea-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);
+    text-align: center;
+    padding-top: 40px;
+}
+
+#tea-game-screen h1 {
+    color: #fff; /* Deep red looks amazing on white */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+#tea-game-screen p {
+    color: #fff; /* Dark gray text so it is readable on the white background! */
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+#sumo-game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #203e48, #185261, #007c92, #008fa9);
+    text-align: center;
+    padding-top: 40px;
+}
+
+#sumo-game-screen h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+#sumo-game-screen p {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* --- END SCREENS (VICTORY & GAME OVER) --- */
+#victory-screen, #gameover-screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient(
+        -45deg,
+        #000000,
+        #000000 10px,
+        #111111 10px,
+        #111111 20px
+    );
+}
+
+.end-card {
+    background: #00889c;
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    border: 8px solid #111;
+}
+
+.end-card h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.victory-card h1 { color: #00763d; } /* Green text for winning */
+.gameover-card h1 { color: #e74c3c; } /* Red text for losing */
+
+.end-card h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.end-card p {
+    font-size: 20px;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+
+.end-card button {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 24px;
+    padding: 15px 40px;
+    background: #22404d;
+    color: white;
+    border: 4px solid #111;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #111;
+    transition: transform 0.1s;
+}
+
+.end-card button:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 0px #111;
+}
+
+/* --- SECRET WINNER CODES --- */
+.secret-codes {
+    margin: 30px auto;
+    background: #fdfbf7;
+    padding: 20px;
+    border-radius: 15px;
+    border: 4px dashed #8fc440; /* Green dashed border like a coupon */
+}
+
+.secret-codes h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #e74c3c;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.secret-codes p {
+    font-size: 16px;
+    color: #333;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-bottom: 20px;
+}
+
+.code-box {
+    background: #22404d; /* Dark background to make the gold pop */
+    color: #fff; /* Golden text */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    width: 85%;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+    user-select: all; /* Makes it so if they click the text, it highlights the whole code instantly to copy! */
+}
+
+/* --- IPAD FIX: PREVENT ZOOMING AND HIGHLIGHTING WHEN BUTTON MASHING --- */
+button {
+    touch-action: manipulation; /* Disables the double-tap-to-zoom feature on buttons */
+    user-select: none; /* Stops the button text from turning blue when tapped rapidly */
+    -webkit-user-select: none; /* Safari specific fix */
+}
+/* ========================================================
+   CUSTOM GAME POPUP ALERT
+======================================================== */
+#custom-alert-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; /* Makes sure it is ALWAYS on top! */
+}
+
+#custom-alert-box {
+    background: #22404d;
+    border: 6px solid #111;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    width: min(500px, 85vw);
+    box-shadow: 10px 10px 0px #111;
+    
+    /* FIX: Changed the animation name to alertPop */
+    animation: alertPop 0.3s ease-out; 
+}
+/* --- NEW: Custom animation just for the alert box --- */
+@keyframes alertPop {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); } /* Slight bounce effect */
+    100% { transform: scale(1); }
+}
+
+#custom-alert-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+#custom-alert-btn {
+    font-family: 'Roboto Condensed', sans-serif;
+    background: #00c0ca;
+    color: white;
+    border: 4px solid #111;
+    font-size: clamp(20px, 4vw, 26px);
+    padding: 10px 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #111;
+    transition: transform 0.1s;
+}
+#custom-alert-btn:active { transform: translateY(4px); box-shadow: 0px 0px 0px #111; }
